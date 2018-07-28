@@ -23,7 +23,7 @@
                         <form action="ProcessLogin" method="post" id="body-login-form">
                             <label>Login to BMAGBOOK</label>
                             <div class="alert-danger">
-                                <%= Util.StringUtil.getString(session.getAttribute("message")) %>
+                                ${sessionScope.message}
                             </div>
                             <input type="text" name="user-login-id" placeholder="Email address or phone number" />
                             <input type="password" name="user-login-password" placeholder="Password" />

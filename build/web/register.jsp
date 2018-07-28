@@ -41,13 +41,13 @@
                         <h3>Create an account</h3>
                         <p>It's free and always will be.</p>
                         <div class="alert-danger">
-                            <%= Util.StringUtil.getString(request.getAttribute("error"))%>
+                            ${requestScope.error}
                         </div>
                         <form action="ProcessRegister" method="post" class="register-form">
                             <div class="reg-input-full-name">
                                 <div class="reg-input" id="first-name">
                                     <input type="text" name="first-name" placeholder="First name"
-                                           value="<%= Util.StringUtil.getString(request.getParameter("first-name"))%>">
+                                           value="${param["first-name"]}">
                                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                     <span class="error-popup">Input your first name
                                         <span></span><span></span>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="reg-input" id="last-name">
                                     <input type="text" name="last-name" placeholder="Last name"
-                                           value="<%= Util.StringUtil.getString(request.getParameter("last-name"))%>">
+                                           value="${param["last-name"]}">
                                     <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                     <span class="error-popup">Input your last name
                                         <span></span><span></span>
@@ -64,19 +64,19 @@
                             </div>
                             <div class="reg-input" id="mobile-or-email">
                                 <input type="text" name="mobile-or-email" placeholder="Mobile phone or email address"
-                                       value="<%= Util.StringUtil.getString(request.getParameter("mobile-or-email"))%>">
+                                       value="${param["mobile-or-email"]}">
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                 <span class="error-popup">Input your email or phone
                                     <span></span><span></span>
                                 </span>
                             </div>
-<!--                            <div class="reg-input" id="re-mobile-or-email">
-                                <input type="text" name="re-mobile-or-email" placeholder="Re-enter mobile phone or email address">
-                                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                                <span class="error-popup">Re-input your email or phone
-                                    <span></span><span></span>
-                                </span>
-                            </div>-->
+                            <!--                            <div class="reg-input" id="re-mobile-or-email">
+                                                            <input type="text" name="re-mobile-or-email" placeholder="Re-enter mobile phone or email address">
+                                                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                                                            <span class="error-popup">Re-input your email or phone
+                                                                <span></span><span></span>
+                                                            </span>
+                                                        </div>-->
                             <div class="reg-input" id="user-password">
                                 <input type="password" name="user-password" placeholder="New password">
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
@@ -86,13 +86,13 @@
                             </div>
                             <label style="display:block;">Birthday</label>
                             <div class="reg-input">
-                                <select name="day" id="days">
+                                <select name="day" id="days" value="${param["day"]}">
                                     <option>Day</option>
                                 </select>
-                                <select name="month" id="months">
+                                <select name="month" id="months" value="${param["month"]}">
                                     <option>Month</option>
                                 </select>
-                                <select name="year" id="years">
+                                <select name="year" id="years" value="${param["year"]}">
                                     <option>Year</option>
                                 </select>
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
