@@ -17,7 +17,7 @@
                             <%= profile.getLastName()%>
                             <%= profile.getFirstName()%>
                         </a>
-                        <a href=""><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
+                        <a href="ProcessProfile"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
                     </div>
 
                     <div class="left-tool-section">

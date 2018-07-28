@@ -32,6 +32,10 @@
         <servlet-name>ProcessLogout</servlet-name>
         <servlet-class>Controller.ProcessLogout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcessProfile</servlet-name>
+        <servlet-class>Controller.ProcessProfile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcessRegister</servlet-name>
         <url-pattern>/ProcessRegister</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>ProcessLogout</servlet-name>
         <url-pattern>/ProcessLogout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessProfile</servlet-name>
+        <url-pattern>/ProcessProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

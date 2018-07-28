@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 
-    <jsp:include page="./WEB-INF/head_tag.jsp">
+    <jsp:include page="/WEB-INF/head_tag.jsp">
         <jsp:param name="title" value="Profile" />
     </jsp:include>
 
 
     <body>
-        <%@include file="WEB-INF/top_nav.jspf" %>
+        <%@include file="/WEB-INF/top_nav.jspf" %>
 
         <section class="container-fluid" id="main-body">
             <div class="row no-pad">
@@ -16,7 +16,10 @@
                         <div class="profile-header-top">
                             <span id="profile-button-add-cover"><i class="fa fa-camera" aria-hidden="true"></i> Add Cover Photo</span>
                             <img src="img/profile.jpg">
-                            <h3>Ngô Đăng Hà An</h3>
+                            <h3>
+                                <%= profile.getLastName()%>
+                                <%= profile.getFirstName()%>
+                            </h3>
                             <a href="" id="profile-button-update-info">Update Info <span>1</span></a>
                             <a href="" id="profile-button-view-log">View Activity Log <span>5</span></a>
                         </div>
@@ -49,13 +52,16 @@
                                     <div class="overview-form">
                                         <form action="/" method="post">
                                             <label>First Name:</label>
-                                            <input required type="text" name="first-name" maxlength="30" />
+                                            <input required type="text" name="first-name" maxlength="30"
+                                                   value="<%= profile.getFirstName()%>"/>
 
                                             <label>Last Name:</label>
-                                            <input required type="text" name="last-name" maxlength="30" />
+                                            <input required type="text" name="last-name" maxlength="30"
+                                                   value="<%= profile.getLastName()%>"/>
 
                                             <label>Email/Mobile:</label>
-                                            <input required type="email" name="mobile-or-email" />
+                                            <input required type="email" name="mobile-or-email" 
+                                                   value="<%= profile.getEmailOrPhone()%>"/>
 
                                             <label>Password:</label>
                                             <input required type="password" name="user-password" />
@@ -223,22 +229,41 @@
                     </div>
                 </div>
             </div>
+            <%
+                String[] birthday = profile.getBirthday().split("-");
+                String d = birthday[0];
+                String m = birthday[1];
+                String y = birthday[2];
+            %>
         </section>
         <script>
             $(function () {
+                var day = "<%= Util.StringUtil.getString(d)%>";
+                var month = "<%= Util.StringUtil.getString(m)%>";
+                var year = "<%= Util.StringUtil.getString(y)%>";
                 for (var i = 1; i <= 31; i++) {
-                    $("#days").append("<option>" + i + "</option>");
+                    if (i == day)
+                        $("#days").append("<option selected>" + i + "</option>");
+                    else
+                        $("#days").append("<option>" + i + "</option>");
                 }
 
                 for (var i = 1; i <= 12; i++) {
-                    $("#months").append("<option>" + i + "</option>");
+                    if (i == month)
+                        $("#months").append("<option selected>" + i + "</option>");
+                    else
+                        $("#months").append("<option>" + i + "</option>");
                 }
 
                 for (var i = 2016; i >= 1905; i--) {
-                    $("#years").append("<option>" + i + "</option>");
+                    if (i == year)
+                        $("#years").append("<option selected>" + i + "</option>");
+                    else
+                        $("#years").append("<option>" + i + "</option>");
                 }
-                var viewportHeight = $(window).height();
-                $("#online-list").css("max-height", viewportHeight);
+
+                var selectedSex = "<%= Util.StringUtil.getString(profile.getSex())%>";
+                $("input[name=sex][value=" + selectedSex + "]").prop('checked', true);
             });
         </script>
         <script src="js/app.js"></script>
