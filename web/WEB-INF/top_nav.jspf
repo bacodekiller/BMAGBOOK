@@ -31,6 +31,11 @@
                     <a href="/"><i class="fa fa-globe" aria-hidden="true"></i></a>
                     <span class="mess-notif">5</span>
                 </li>
+                <%if (session.getAttribute("user") != null) {  %>
+                <li>
+                    <a href="ProcessLogout">Sign out</a>
+                </li>
+                <% }%>
             </ul>
         </div>
     </div>

@@ -28,6 +28,10 @@
         <servlet-name>ProcessNewsFeed</servlet-name>
         <servlet-class>Controller.ProcessNewsFeed</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcessLogout</servlet-name>
+        <servlet-class>Controller.ProcessLogout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcessRegister</servlet-name>
         <url-pattern>/ProcessRegister</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ProcessNewsFeed</servlet-name>
         <url-pattern>/ProcessNewsFeed</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessLogout</servlet-name>
+        <url-pattern>/ProcessLogout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
