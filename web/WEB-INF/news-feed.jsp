@@ -13,7 +13,9 @@
                 <div class="col-md-2 no-pad">
                     <div class="left-tool-section">
                         <a href="">
-                            <img src="img/avatar.jpg"> Ngo Dang Ha An
+                            <img src="img/avatar.jpg">
+                            <%= profile.getLastName()%>
+                            <%= profile.getFirstName()%>
                         </a>
                         <a href=""><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
                     </div>
