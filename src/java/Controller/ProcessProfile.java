@@ -5,6 +5,8 @@
  */
 package Controller;
 
+import DAO.UserDAO;
+import Model.Profile;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -33,8 +35,31 @@ public class ProcessProfile extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        
+
         HttpSession session = request.getSession();
+
+        String action = request.getParameter("action");
+        if (action != null && action.equals("update-profile")) {
+            String firstName = request.getParameter("first-name");
+            String lastName = request.getParameter("last-name");
+            String emailOrPhone = request.getParameter("mobile-or-email");
+            String password = request.getParameter("user-password");
+            String day = request.getParameter("day");
+            String month = request.getParameter("month");
+            String year = request.getParameter("year");
+            String birthday = String.format("%s-%s-%s", day, month, year);
+            String sex = request.getParameter("sex");
+            Profile profile = new Profile(firstName, lastName, emailOrPhone, password, birthday, sex);
+            String currentEmailOrPhone = ((Profile) session.getAttribute("user")).getEmailOrPhone();
+            boolean result = UserDAO.updateUser(profile, currentEmailOrPhone);
+            if (!result) {
+                session.setAttribute("error", "Can not update");
+            } else {
+                session.setAttribute("error", "");
+                session.setAttribute("user", profile);
+            }
+        }
+
         if (session.getAttribute("user") != null) {
             RequestDispatcher dis = request.getRequestDispatcher("WEB-INF/profile.jsp");
             dis.forward(request, response);

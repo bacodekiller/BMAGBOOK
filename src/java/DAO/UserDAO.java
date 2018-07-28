@@ -7,6 +7,8 @@ package DAO;
 
 import Model.Profile;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -75,6 +77,26 @@ public class UserDAO {
             ps.setString(6, profile.getSex());
             ps.executeUpdate();
             ps.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static boolean updateUser(Profile profile, String currentEmailOrPhone) {
+        try (Connection c = openConnection()) {
+            String update = "update tbl_profile set first_name = ?, last_name = ?, "
+                    + "email_mobile = ?, password = ?, birthday = ?, sex = ? where email_mobile = ?";
+            PreparedStatement ps = c.prepareStatement(update);
+            ps.setString(1, profile.getFirstName());
+            ps.setString(2, profile.getLastName());
+            ps.setString(3, profile.getEmailOrPhone());
+            ps.setString(4, profile.getPassword());
+            ps.setString(5, profile.getBirthday());
+            ps.setString(6, profile.getSex());
+            ps.setString(7, currentEmailOrPhone);
+            ps.executeUpdate();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
