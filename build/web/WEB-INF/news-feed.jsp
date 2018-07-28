@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 
-    <jsp:include page="./WEB-INF/head_tag.jsp">
+    <jsp:include page="/WEB-INF/head_tag.jsp">
         <jsp:param name="title" value="News Feeds"></jsp:param>
     </jsp:include>
 
     <body>
-        <%@include file="WEB-INF/top_nav.jspf" %>
+        <%@include file="/WEB-INF/top_nav.jspf" %>
 
         <section class="container-fluid" id="main-body">
             <div class="row no-pad">
