@@ -25,6 +25,33 @@ public class UserDAO {
         return conn;
     }
 
+    public static Profile getProfile(String emailOrPhone, String password) {
+        Profile profile = null;
+        String select = "select * from tbl_profile where email_mobile = ? and password = ?";
+        try (Connection c = openConnection()) {
+            PreparedStatement ps = c.prepareStatement(select);
+            ps.setString(1, emailOrPhone);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                profile = new Profile(rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("email_mobile"),
+                        rs.getString("password"),
+                        rs.getString("birthday"),
+                        rs.getString("sex")
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return profile;
+    }
+
+    public static Profile checkLogin(String emailOrPhone, String password) {
+        return getProfile(emailOrPhone, password);
+    }
+
     public static boolean isDuplicateEmailOrPhone(String emailOrPhone) {
         try (Connection c = openConnection()) {
             String select = "select id from tbl_profile where email_mobile = ?";
