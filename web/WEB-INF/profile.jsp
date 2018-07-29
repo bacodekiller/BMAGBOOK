@@ -3,9 +3,8 @@
 <html>
 
     <jsp:include page="/WEB-INF/head_tag.jsp">
-        <jsp:param name="title" value="Profile" />
+        <jsp:param name="title" value="Your profile" />
     </jsp:include>
-
 
     <body>
         <%@include file="/WEB-INF/top_nav.jspf" %>
@@ -15,11 +14,20 @@
                 <div class="col-md-8 no-pad">
                     <div class="profile-header">
                         <div class="profile-header-top">
-                            <span id="profile-button-add-cover"><i class="fa fa-camera" aria-hidden="true"></i> Add Cover Photo</span>
-                            <img src="img/profile.jpg">
+                            <span id="profile-button-add-cover">
+                                <form action="UploadImage" id="frmUploadPhoto" 
+                                      enctype="multipart/form-data" method="post" >
+                                    <i class="fa fa-camera" aria-hidden="true"></i> 
+                                    Add Cover Photo
+                                    <input class="input-cover-photo" type="file" 
+                                           id="userCoverPhoto" name="userCoverPhoto"/>
+                                </form>
+                            </span>
+                            <img 
+                                src="${pageContext.servletContext.contextPath}/ProcessImage?emailOrPhone=${sessionScope.user.emailOrPhone}">
                             <h3>
-                                ${sessionScope.user.lastName}
                                 ${sessionScope.user.firstName}
+                                ${sessionScope.user.lastName}
                             </h3>
                             <a href="" id="profile-button-update-info">Update Info <span>1</span></a>
                             <a href="" id="profile-button-view-log">View Activity Log <span>5</span></a>
@@ -56,11 +64,11 @@
                                         </div>
                                         <form action="ProcessProfile" method="post">
                                             <label>First Name:</label>
-                                            <input required type="text" name="first-name" maxlength="30"
+                                            <input required type="text" name="first-name" maxlength="30" 
                                                    value="${sessionScope.user.firstName}"/>
 
                                             <label>Last Name:</label>
-                                            <input required type="text" name="last-name" maxlength="30"
+                                            <input required type="text" name="last-name" maxlength="30" 
                                                    value="${sessionScope.user.lastName}"/>
 
                                             <label>Email/Mobile:</label>
@@ -237,9 +245,13 @@
         </section>
         <script>
             $(function () {
-                var day = "${dates:getDatePart(sessionScope.user.birthday) [0]}";
-                var month = "${dates:getDatePart(sessionScope.user.birthday) [1]}";
-                var year = "${dates:getDatePart(sessionScope.user.birthday) [2]}";
+                $('#userCoverPhoto').change(function () {
+                    $('#frmUploadPhoto').submit();
+                });
+
+                var day = "${dates:getDatePart(sessionScope.user.birthday)[0]}";
+                var month = "${dates:getDatePart(sessionScope.user.birthday)[1]}";
+                var year = "${dates:getDatePart(sessionScope.user.birthday)[2]}";
                 for (var i = 1; i <= 31; i++) {
                     if (i == day)
                         $("#days").append("<option selected>" + i + "</option>");
@@ -263,6 +275,9 @@
 
                 var selectedSex = "${sessionScope.user.sex}";
                 $("input[name=sex][value=" + selectedSex + "]").prop('checked', true);
+
+                var viewportHeight = $(window).height();
+                $("#online-list").css("max-height", viewportHeight);
             });
         </script>
         <script src="js/app.js"></script>

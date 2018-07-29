@@ -1,4 +1,4 @@
-<%@page import="Model.Profile" %>
+<%@page import="Model.Profile"%>
 <nav class="container-fluid" id="main-nav-user-home">
     <div class="row">
         <div class="col-md-6" id="user-tools-left">
@@ -11,7 +11,9 @@
         <div class="col-md-6" id="user-tools-right">
             <ul>
                 <li>
-                    <a href="/"><img src="img/avatar.jpg"> 
+                    <a href="/">
+                        <img class="avatar-small" 
+                             src="${pageContext.servletContext.contextPath}/ProcessImage?emailOrPhone=${sessionScope.user.emailOrPhone}"> 
                         ${sessionScope.user.firstName}
                     </a>
                 </li>
@@ -28,7 +30,7 @@
                     <a href="/"><i class="fa fa-globe" aria-hidden="true"></i></a>
                     <span class="mess-notif">5</span>
                 </li>
-                <%if (session.getAttribute("user") != null) {  %>
+                <%if (session.getAttribute("user") != null) { %>
                 <li>
                     <a href="ProcessLogout">Sign out</a>
                 </li>

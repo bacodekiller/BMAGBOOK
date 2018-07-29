@@ -36,6 +36,14 @@
         <servlet-name>ProcessProfile</servlet-name>
         <servlet-class>Controller.ProcessProfile</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcessImage</servlet-name>
+        <servlet-class>Controller.ProcessImage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UploadImage</servlet-name>
+        <servlet-class>Controller.UploadImage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ProcessRegister</servlet-name>
         <url-pattern>/ProcessRegister</url-pattern>
@@ -55,6 +63,14 @@
     <servlet-mapping>
         <servlet-name>ProcessProfile</servlet-name>
         <url-pattern>/ProcessProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessImage</servlet-name>
+        <url-pattern>/ProcessImage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UploadImage</servlet-name>
+        <url-pattern>/UploadImage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

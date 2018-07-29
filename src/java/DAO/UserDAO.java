@@ -6,9 +6,8 @@
 package DAO;
 
 import Model.Profile;
+import java.io.InputStream;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -87,7 +86,8 @@ public class UserDAO {
     public static boolean updateUser(Profile profile, String currentEmailOrPhone) {
         try (Connection c = openConnection()) {
             String update = "update tbl_profile set first_name = ?, last_name = ?, "
-                    + "email_mobile = ?, password = ?, birthday = ?, sex = ? where email_mobile = ?";
+                    + "email_mobile = ?, password = ?, birthday = ?, "
+                    + "sex = ? where email_mobile = ?";
             PreparedStatement ps = c.prepareStatement(update);
             ps.setString(1, profile.getFirstName());
             ps.setString(2, profile.getLastName());
@@ -100,6 +100,36 @@ public class UserDAO {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static byte[] getImageData(String emailOrPhone) {
+        String select = "select avatar from tbl_profile "
+                + "where email_mobile = ?";
+        try (Connection c = openConnection();
+                PreparedStatement p = c.prepareStatement(select)) {
+            p.setString(1, emailOrPhone);
+            ResultSet rs = p.executeQuery();
+            if (rs.next()) {
+                return rs.getBytes("avatar");
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public static boolean updateUserAvatar(InputStream inputStream,
+            String emailOrPhone) {
+        String update = "update tbl_profile set avatar = ? "
+                + "where email_mobile = ?";
+        try (Connection c = openConnection();
+                PreparedStatement p = c.prepareStatement(update)) {
+            p.setBlob(1, inputStream);
+            p.setString(2, emailOrPhone);
+            p.executeUpdate();
+            return true;
+        } catch (Exception e) {
         }
         return false;
     }
