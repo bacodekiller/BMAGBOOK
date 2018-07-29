@@ -5,14 +5,11 @@
  */
 package Controller;
 
-import DAO.DBConfig;
 import DAO.UserDAO;
 import Model.Profile;
 import Util.Validate;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -68,7 +65,7 @@ public class ProcessRegister extends HttpServlet {
             dis.forward(request, response);
         } else {
             String birthday = String.format("%s-%s-%s", day, month, year);
-            Profile profile = new Profile(firstName, lastName, emailOrPhone, password, birthday, sex);
+            Profile profile = new Profile(0, firstName, lastName, emailOrPhone, password, birthday, sex);
             boolean result = UserDAO.addNewUSer(profile);
             if (result) {
                 response.sendRedirect("login.jsp");

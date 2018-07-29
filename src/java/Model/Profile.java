@@ -11,6 +11,7 @@ package Model;
  */
 public class Profile {
 
+    private int id;
     private String firstName;
     private String lastName;
     private String emailOrPhone;
@@ -18,13 +19,22 @@ public class Profile {
     private String birthday;
     private String sex;
 
-    public Profile(String firstName, String lastName, String emailOrPhone, String password, String birthday, String sex) {
+    public Profile(int id, String firstName, String lastName, String emailOrPhone, String password, String birthday, String sex) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailOrPhone = emailOrPhone;
         this.password = password;
         this.birthday = birthday;
         this.sex = sex;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {

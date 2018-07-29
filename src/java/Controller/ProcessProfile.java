@@ -49,7 +49,7 @@ public class ProcessProfile extends HttpServlet {
             String year = request.getParameter("year");
             String birthday = String.format("%s-%s-%s", day, month, year);
             String sex = request.getParameter("sex");
-            Profile profile = new Profile(firstName, lastName, emailOrPhone, password, birthday, sex);
+            Profile profile = new Profile(0, firstName, lastName, emailOrPhone, password, birthday, sex);
             String currentEmailOrPhone = ((Profile) session.getAttribute("user")).getEmailOrPhone();
             boolean result = UserDAO.updateUser(profile, currentEmailOrPhone);
             if (!result) {
