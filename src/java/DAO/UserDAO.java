@@ -27,7 +27,7 @@ public class UserDAO {
         }
         return conn;
     }
-    
+
     public static Profile getProfileByEmail(String emailOrPhone) {
         Profile profile = null;
         String select = "select * from tbl_profile where email_mobile = ?";
@@ -49,7 +49,7 @@ public class UserDAO {
         }
         return profile;
     }
-    
+
     public static Profile getProfile(String emailOrPhone, String password) {
         Profile profile = null;
         String select = "select * from tbl_profile where email_mobile = ? and password = ?";
@@ -191,6 +191,30 @@ public class UserDAO {
                 list.add(profile);
             }
         } catch (Exception e) {
+        }
+        return list;
+    }
+
+    public static List<Profile> getSuggestedFriend(int me) {
+        List<Profile> list = new ArrayList<>();
+        Profile profile = null;
+        String select = "SELECT * FROM bmagbook.tbl_profile "
+                + "where id != ? and id not in "
+                + "(select friend_to from tbl_friends where me = ?)";
+        try (Connection c = openConnection();
+                PreparedStatement pStmt = c.prepareStatement(select);) {
+            pStmt.setInt(1, me);
+            pStmt.setInt(2, me);
+            ResultSet rs = pStmt.executeQuery();
+            while (rs.next()) {
+                profile = new Profile(rs.getInt("id"), rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("email_mobile"), rs.getString("password"),
+                        rs.getString("birthday"), rs.getString("sex"));
+                list.add(profile);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return list;
     }

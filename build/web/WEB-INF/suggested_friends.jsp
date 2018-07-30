@@ -1,0 +1,16 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="list" value="${requestScope.suggestedList}" />
+<c:forEach var="friend" items="${list}">
+    <div class="friend-item">
+        <img class="avatar-small" src="${pageContext.servletContext.contextPath}/ProcessImage?emailOrPhone=${friend.emailOrPhone}">
+        <span>
+            <a href="#">${friend.lastName} ${friend.firstName}</a> 
+            <span style="display:block;">123 mutual friends </span>
+            <button id="${friend.id}"><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
+        </span>
+        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
+    </div>
+</c:forEach>
+

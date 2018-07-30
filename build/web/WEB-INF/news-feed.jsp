@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html>
-
     <jsp:include page="/WEB-INF/head_tag.jsp">
-        <jsp:param name="title" value="News Feeds"></jsp:param>
+        <jsp:param name="title" value="News Feed" />
     </jsp:include>
-
     <body>
         <%@include file="/WEB-INF/top_nav.jspf" %>
-
         <section class="container-fluid" id="main-body">
             <div class="row no-pad">
                 <div class="col-md-2 no-pad">
                     <div class="left-tool-section">
                         <a href="">
-                            <img class="avatar-small" src="${pageContext.servletContext.contextPath}/ProcessImage?emailOrPhone=${sessionScope.user.emailOrPhone}"> 
+                            <img class="avatar-small" 
+                             src="${pageContext.servletContext.contextPath}/ProcessImage?emailOrPhone=${sessionScope.user.emailOrPhone}">
                             ${sessionScope.user.firstName}
                             ${sessionScope.user.lastName}
                         </a>
@@ -21,7 +19,6 @@
                             Edit Profile
                         </a>
                     </div>
-
                     <div class="left-tool-section">
                         <h4>FAVORITES</h4>
                         <a href=""><i class="fa fa-newspaper-o" aria-hidden="true"></i> News Feed</a>
@@ -29,7 +26,6 @@
                         <a href=""><i class="fa fa-weixin" aria-hidden="true"></i> Events</a>
                         <a href=""><i class="fa fa-life-ring" aria-hidden="true"></i> Sales Group</a>
                     </div>
-
                     <div class="left-tool-section">
                         <h4>FRIENDS</h4>
                         <a href=""><i class="fa fa-location-arrow" aria-hidden="true"></i> Ho Chi Minh City</a>
@@ -37,7 +33,6 @@
                         <a href=""><i class="fa fa-building" aria-hidden="true"></i> GSC Corporation</a>
                         <a href=""><i class="fa fa-graduation-cap" aria-hidden="true"></i> BMAG</a>
                     </div>
-
                     <div class="left-tool-section">
                         <h4>APPS</h4>
                         <a href=""><i class="fa fa-industry" aria-hidden="true"></i> Live Videos</a>
@@ -46,7 +41,6 @@
                         <a href=""><i class="fa fa-picture-o" aria-hidden="true"></i> Photos</a>
                         <a href=""><i class="fa fa-gamepad" aria-hidden="true"></i> Games Feed</a>
                     </div>
-
                     <div class="left-tool-section">
                         <h4>EVENTS</h4>
                         <a href=""><i class="fa fa-bicycle" aria-hidden="true"></i> Live Videos</a>
@@ -197,83 +191,7 @@
                                 <label>PEOPLE YOU MAY KNOW</label>
                                 <a href="#">See All</a>
                             </div>
-                            <div class="friend-item">
-                                <img src="img/friend1.jpg">
-                                <span>
-                                    <a href="#">Trần Xuân Khôi</a> 
-                                    <span style="display:block;">123 mutual friends </span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-
-                            <div class="friend-item">
-                                <img src="img/friend2.jpg">
-                                <span>
-                                    <a href="#">Trần Văn Ớt</a> 
-                                    <span style="display:block;">Le Thi Ca Chua ...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-
-                            <div class="friend-item">
-                                <img src="img/friend3.jpg">
-                                <span>
-                                    <a href="#">Lê Xuân Xoạn</a> 
-                                    <span style="display:block;">A mutual friend...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-
-                            <div class="friend-item">
-                                <img src="img/friend2.jpg">
-                                <span>
-                                    <a href="#">Trần Văn Ớt</a> 
-                                    <span style="display:block;">A mutual friend...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-
-                            <div class="friend-item">
-                                <img src="img/friend3.jpg">
-                                <span>
-                                    <a href="#">Trần Văn Ớt</a> 
-                                    <span style="display:block;">A mutual friend...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-
-                            <div class="friend-item">
-                                <img src="img/friend1.jpg">
-                                <span>
-                                    <a href="#">Trần Văn Ớt</a> 
-                                    <span style="display:block;">A mutual friend...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="friend-item">
-                                <img src="img/friend3.jpg">
-                                <span>
-                                    <a href="#">Trần Văn Ớt</a> 
-                                    <span style="display:block;">A mutual friend...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
-                            <div class="friend-item">
-                                <img src="img/friend3.jpg">
-                                <span>
-                                    <a href="#">Trần Văn Ớt</a> 
-                                    <span style="display:block;">A mutual friend...</span>
-                                    <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                                </span>
-                                <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                            </div>
+                            <div id="suggested-friend"></div>
                         </div>
                     </div>
                 </div>
@@ -330,6 +248,18 @@
 
         <script>
             $(function () {
+                // Load suggested friend with AJAX
+                $.ajax({
+                    url: 'ProcessSuggestFriend',
+                    type: 'POST',
+                    success: function (data) {
+                        $('#suggested-friend').html(data);
+                    },
+                    error: function (e) {
+                        alert('Error loading ajax: ' + e);
+                    }
+                });
+                
                 var viewportHeight = $(window).height();
                 $("#online-list ul").css("max-height", viewportHeight);
             });
