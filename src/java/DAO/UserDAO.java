@@ -218,4 +218,17 @@ public class UserDAO {
         }
         return list;
     }
+
+    public static void addFriend(int me, int friend) {
+        try (Connection c = openConnection()) {
+            String insert = "Insert into tbl_friends Values(null,?,?)";
+            PreparedStatement pStmt = c.prepareStatement(insert);
+            pStmt.setInt(1, me);
+            pStmt.setInt(2, friend);
+            pStmt.executeUpdate();
+            pStmt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

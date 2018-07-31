@@ -13,4 +13,24 @@
         <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
     </div>
 </c:forEach>
-
+<script>
+    $(function () {
+        $('.friend-item button').click(function () {
+            var friendId = $(this).attr('id');
+            $.ajax({
+                url: 'ProcessSuggestFriend',
+                type: 'POST',
+                data: {
+                    action: 'add-friend',
+                    'friend-id': friendId
+                },
+                success: function (data) {
+                    $('#suggested-friend').html(data);
+                },
+                error: function (e) {
+                    alert('Error loading ajax: ');
+                }
+            });
+        });
+    });
+</script>

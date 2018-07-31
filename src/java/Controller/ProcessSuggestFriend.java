@@ -38,12 +38,20 @@ public class ProcessSuggestFriend extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         HttpSession sess = request.getSession();
         Profile profile = (Profile) sess.getAttribute("user");
-        
+
+        //Step 2
+        String action=request.getParameter("action");
+        if(action != null && action.equals("add-friend")) {
+            int friendId = Integer.parseInt(request.getParameter("friend-id"));
+            UserDAO.addFriend(profile.getId(), friendId);
+        }
+
         // Step 1
         List<Profile> list = UserDAO.getSuggestedFriend(profile.getId());
         request.setAttribute("suggestedList", list);
         RequestDispatcher dis = request.getRequestDispatcher("WEB-INF/suggested_friends.jsp");
         dis.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
